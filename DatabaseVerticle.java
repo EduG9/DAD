@@ -52,7 +52,7 @@ public class DatabaseVerticle extends AbstractVerticle{
 		mySQLPool.preparedQuery("SELECT * FROM proyectopinza.pinza WHERE idpinza = " + routingContext.request().getParam("idpinza"), res -> {
 			if (res.succeeded()) {
 				RowSet<Row> resultSet = res.result();
-				System.out.println("El número de elementos obtenidos es " + resultSet.size());
+				System.out.println("El nÃºmero de elementos obtenidos es " + resultSet.size());
 				JsonArray result = new JsonArray();
 				for (Row row : resultSet) {
 					result.add(JsonObject.mapFrom(new Pinza(row.getInteger("idpinza"),
@@ -109,12 +109,12 @@ public class DatabaseVerticle extends AbstractVerticle{
 	}
 	
 	private void getValueBySensorAndTimestamp(RoutingContext routingContext) {
-		mySQLPool.preparedQuery("SELECT * FROM proyectopinza.sensor WHERE timeStamp > " + 
+		mySQLPool.preparedQuery("SELECT * FROM proyectopinza.sensor WHERE timeStamp = " + 
 				routingContext.request().getParam("timeStamp") + " AND idsensor = " + 
 				routingContext.request().getParam("idsensor"), res -> {
 			if (res.succeeded()) {
 				RowSet<Row> resultSet = res.result();
-				System.out.println("El número de elementos obtenidos es " + resultSet.size());
+				System.out.println("El nÃºmero de elementos obtenidos es " + resultSet.size());
 				JsonArray result = new JsonArray();
 				for (Row row : resultSet) {
 					result.add(JsonObject.mapFrom(new Sensor(row.getInteger("idsensor"),
@@ -136,7 +136,7 @@ public class DatabaseVerticle extends AbstractVerticle{
 		mySQLPool.preparedQuery("SELECT * FROM proyectopinza.sensor WHERE idsensor = " + routingContext.request().getParam("idsensor"), res -> {
 			if (res.succeeded()) {
 				RowSet<Row> resultSet = res.result();
-				System.out.println("El número de elementos obtenidos es " + resultSet.size());
+				System.out.println("El nÃºmero de elementos obtenidos es " + resultSet.size());
 				JsonArray result = new JsonArray();
 				for (Row row : resultSet) {
 					result.add(JsonObject.mapFrom(new Sensor(row.getInteger("idsensor"),
